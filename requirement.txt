@@ -1,0 +1,11 @@
+In scope
+- Add a retry_with_backoff decorator/wrapper with configurable max attempts (default 3), exponential backoff with jitter (default base delay 0.5s), retrying only on transient conditions (timeouts, 429, 502/503/504) — not on other 4xx errors.
+- Clear logging of each retry attempt (attempt number, delay, reason).
+- Apply the wrapper to fetch_json.
+- Tests covering: success on first try, success after N retries, exhaustion (raises after max attempts), non-retryable errors failing fast.
+- Updated docstring/comment describing the new retry behavior.
+
+Out of scope
+- No circuit breaker, no persistent retry queues, no distributed rate-limiting.
+- No changes to CLI argument parsing or unrelated modules.
+- No new dependencies beyond stdlib time/random for backoff+jitter — if a tool's guardrails make that impractical, note it as a friction point rather than silently adding a dependency.

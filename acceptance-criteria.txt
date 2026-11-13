@@ -1,0 +1,6 @@
+Acceptance Criteria
+- retry_with_backoff exists, is applied to fetch_json, and is independently unit-testable.
+- All 4 new test cases pass (first-try success, retry-then-success, exhaustion, fail-fast on non-retryable error).
+- Existing tests still pass (no regressions).
+- Retry behavior is logged, not silent.
+- Code follows the conventions in the AGENTS.md below (naming, error handling, comment style).
